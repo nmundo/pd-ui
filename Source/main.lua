@@ -1,28 +1,22 @@
 import "greeting"
+import "button"
 
 local gfx <const> = playdate.graphics
 local font = gfx.font.new('font/Mini Sans 2X')
 
-local greeting = greeting(3, -1)
-
-local function loadGame()
+local function load()
 	playdate.display.setRefreshRate(50)
 	gfx.setFont(font)
 end
 
-local function updateGame()
-	greeting:update()
-end
+load()
 
-local function drawGame()
-	gfx.clear()
-	greeting:draw()
-end
-
-loadGame()
+local button1 = button("Click Me", 50, 80, function()
+	print("Button Clicked!")
+end, { padding = 8, borderRadius = 8 })
 
 function playdate.update()
-	updateGame()
-	drawGame()
-	playdate.drawFPS(5,5)
+	gfx.clear()
+	button1:draw()
+	button1:setSelected(true)
 end
