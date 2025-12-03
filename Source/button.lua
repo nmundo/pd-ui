@@ -1,27 +1,42 @@
+import "CoreLibs/object"
+
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
+--[[
+    A simple button class for Playdate.
+    Usage:
+        label: string
+        x, y: number, number // button position
+        onClick: callback // TODO: implement click handling
+        stile (optional) = {
+            padding = number (default: 0)
+            borderWidth = number (default: 1)
+            borderRadius = number (default: 0)
+        }
+--]]
+
 button = {}
 
-class("button").extends()
+class("Button").extends()
 
-function button:init(label, x, y, onClick, style)
+function Button:init(label, x, y, onClick, style)
     local textw, texth = gfx.getTextSize(label)
     self.label = label
     self.x, self.y = x, y
-    self.width = textw + (style.padding * 2 or 0)
-    self.height = texth + (style.padding * 2 or 0)
+    self.width = textw + ((style.padding or 0) * 2)
+    self.height = texth + ((style.padding or 0) * 2)
     self.borderRadius = style.borderRadius
     self.onClick = onClick
     self.style = style or {}
     self.selected = false
 end
 
-function button:setSelected(selected)
+function Button:setSelected(selected)
     self.selected = selected
 end
 
-function button:draw()
+function Button:draw()
     if self.selected then
         gfx.setColor(gfx.kColorBlack)
         gfx.fillRoundRect(self.x + 3, self.y + 3, self.width, self.height, self.borderRadius) -- shadow
