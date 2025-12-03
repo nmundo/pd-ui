@@ -29,8 +29,8 @@ button(
     onClick: function()
     style?: {
         padding: number = 0
-        borderWidth number = 1
-        borderRadius number = 0
+        borderWidth: number = 1
+        borderRadius: number = 0
     }
 )
 ```
