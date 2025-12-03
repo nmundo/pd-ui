@@ -1,7 +1,5 @@
 # Roadmap (Very in flux rn)
 
----
-
 - [ ] core ui components
 
   - [ ] buttons
@@ -16,8 +14,6 @@
 - [ ] event system
 
 # components
-
----
 
 ## button (WIP)
 
@@ -45,3 +41,7 @@ button(
 `button:setSelected(boolean)`
 
 ## dialog
+
+## list
+
+## popover
