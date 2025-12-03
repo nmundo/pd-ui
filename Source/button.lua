@@ -4,7 +4,7 @@ local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 --[[
-    A simple button class for Playdate.
+    Basic button component
     Usage:
         label: string
         x, y: number, number // button position

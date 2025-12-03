@@ -22,8 +22,8 @@ need to add flexibility in color and select style
 #### interface
 
 ```
-button(
-    label: text
+Button(
+    label: string
     x: number
     y: number
     onClick: function()
@@ -37,10 +37,24 @@ button(
 
 #### methods
 
-`button:draw()`
-`button:setSelected(boolean)`
+`Button:draw()`
+`Button:setSelected(boolean)`
 
-## dialog
+## select (WIP)
+
+```
+Select(
+  x: number
+  y: number
+  options: string[]
+  openDirection: "up"|"down"|"left"|"right" = "down"
+  popupWidth: number = 100
+)
+```
+
+#### methods
+
+`Select:toggleOpen()`
 
 ## list
 
