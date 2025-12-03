@@ -13,8 +13,9 @@ function Select:init(x, y, options, openDirection, popupWidth)
     self.openDirection = openDirection or "down"
     self.popupWidth = popupWidth or 100
     self.options = options or {}
-    self.open = true
+    self.open = false
     self.selectedIndex = 1
+    self.onClick = function() self:toggleOpen() end
 end
 
 function Select:draw()
