@@ -1,2 +1,23 @@
+# Build artifacts
+Builds/
+*.pdx
+
+# Editor-specific files
+.zed/
+.vscode/
+.vs/
+*.swp
+*.swo
+*~
+
+# OS-specific files
 .DS_Store
-bin/
+Thumbs.db
+desktop.ini
+
+# Playdate specific
+*.pdx.*
+.zed/local.json
+
+# Other
+screenshots/
