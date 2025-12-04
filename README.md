@@ -81,12 +81,20 @@ Select(
 
 ##### Methods
 
-`navContext:_setFocus(row: number, col: number)`
+`navContext:_setFocus(row: number, col: number)`:
+
 Called by the move methods. Calls `:setSelected(false)` on currently selected component then changes selection to `self.grid[row][column]` and calls `:setSelected(true)` on it.
+
 `navContext:addRow()`
+
 `navContext:addComponentToRow(row: number, component: any)`
+
 `navContext:moveRight()`
+
 `navContext:moveLeft()`
+
 `navContext:moveDown()`
+
 `navContext:moveUp()`
+
 `navContext:getCurrentComponent(): component | nil`
