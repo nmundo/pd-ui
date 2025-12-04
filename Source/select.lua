@@ -1,21 +1,41 @@
 import "CoreLibs/object"
 import "button"
+import "navManager"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 select = {}
+local navContext = navManager.createNavContext()
 
 class("Select").extends(Button)
 
 function Select:init(x, y, options, openDirection, popupWidth)
-    Select.super.init(self, "Select", x, y, self.toggleOpen(self), { padding = 8, borderRadius = 8 })
+    Select.super.init(self, "Select", x, y, function() self.toggleOpen(self) end, { padding = 8, borderRadius = 8 })
     self.openDirection = openDirection or "down"
     self.popupWidth = popupWidth or 100
     self.options = options or {}
     self.open = false
     self.selectedIndex = 1
     self.onClick = function() self:toggleOpen() end
+    self.handlers = {
+        upButtonUp = function()
+            self.selectedIndex = self.selectedIndex - 1
+            if self.selectedIndex < 1 then self.selectedIndex = #self.options end
+        end,
+        downButtonUp = function()
+            self.selectedIndex = self.selectedIndex + 1
+            if self.selectedIndex > #self.options then self.selectedIndex = 1 end
+        end,
+        AButtonUp = function()
+            self.open = false
+            print("Selected option: " .. self.options[self.selectedIndex])
+            pd.inputHandlers.pop()
+        end,
+        BButtonUp = function()
+            self:toggleOpen()
+        end
+    }
 end
 
 function Select:draw()
@@ -48,11 +68,19 @@ function Select:draw()
             gfx.fillRoundRect(startX + 4, startY + yOffset + 3, self.popupWidth, 24, 4)
             gfx.setImageDrawMode(gfx.kDrawModeFillWhite)
         end
+        navContext:addRow()
+        navContext:addComponentToRow(i, self)
         gfx.drawText(option, startX + 10, startY + yOffset + 5)
         gfx.setImageDrawMode(gfx.kDrawModeFillBlack)
     end
 end
 
 function Select:toggleOpen()
-    self.open = not self.open
+    if not self.open then
+        self.open = true
+        pd.inputHandlers.push(self.handlers, true)
+    else
+        self.open = false
+        pd.inputHandlers.pop()
+    end
 end
