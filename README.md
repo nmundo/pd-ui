@@ -75,7 +75,7 @@ Select(
 
 #### Initialization
 
-`function() navManager.createNavContext(): navContext`
+`navManager.createNavContext(): navContext`
 
 `navContext`: 2d array of components and methods to navigate through them
 
