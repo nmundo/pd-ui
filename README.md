@@ -3,6 +3,12 @@
 - [ ] core ui components
 
   - [ ] buttons
+    - [x] base component
+    - [ ] different border styles
+    - [ ] different select states
+  - [ ] select
+    - [ ] base component
+    - [ ] different drop down styles
   - [ ] dialogs
   - [ ] popovers
   - [ ] lists
@@ -11,15 +17,18 @@
 
   - [ ] ??????
 
-- [ ] event system
+- [ ] navigation system
+  - [x] base navigation system
+  - [ ] `:removeComponent()`
+  - [ ] ???????
 
-# components
+# Components
 
-## button (WIP)
+## Button (WIP)
 
 need to add flexibility in color and select style
 
-#### interface
+#### Initialization
 
 ```
 Button(
@@ -35,12 +44,14 @@ Button(
 )
 ```
 
-#### methods
+#### Methods
 
 `Button:draw()`
 `Button:setSelected(boolean)`
 
-## select (WIP)
+## Select (WIP)
+
+#### Initialization
 
 ```
 Select(
@@ -52,10 +63,30 @@ Select(
 )
 ```
 
-#### methods
+#### Methods
 
 `Select:toggleOpen()`
 
-## list
+## List
 
-## popover
+## Popover
+
+## Navigation
+
+#### Initialization
+
+`function() navManager.createNavContext(): navContext`
+
+`navContext`: 2d array of components and methods to navigate through them
+
+##### Methods
+
+`navContext:_setFocus(row: number, col: number)`
+Called by the move methods. Calls `:setSelected(false)` on currently selected component then changes selection to `self.grid[row][column]` and calls `:setSelected(true)` on it.
+`navContext:addRow()`
+`navContext:addComponentToRow(row: number, component: any)`
+`navContext:moveRight()`
+`navContext:moveLeft()`
+`navContext:moveDown()`
+`navContext:moveUp()`
+`navContext:getCurrentComponent(): component | nil`
