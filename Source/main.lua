@@ -5,12 +5,8 @@ import "navManager"
 local gfx <const> = playdate.graphics
 local font = gfx.font.new('font/Mini Sans 2X')
 
-local function load()
-	playdate.display.setRefreshRate(50)
-	gfx.setFont(font)
-end
-
-load()
+playdate.display.setRefreshRate(50)
+gfx.setFont(font)
 
 local button1 = Button("Button", 50, 80, function()
 	print("Button Clicked!")
