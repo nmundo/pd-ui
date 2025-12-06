@@ -11,13 +11,19 @@ local navContext = navManager.createNavContext()
 class("Select").extends(Button)
 
 function Select:init(x, y, options, openDirection, popupWidth)
-    Select.super.init(self, "Select", x, y, function() self.toggleOpen(self) end, { padding = 8, borderRadius = 8 })
+    local labelWidth = gfx.getTextSize(options[1])
+    local trianglePadding = 14
+
+    Select.super.init(self, "Select", x, y, function() self.toggleOpen(self) end,
+        { padding = 8, borderRadius = 8, contentWidth = labelWidth + trianglePadding })
+    self.trianglePadding = trianglePadding
     self.openDirection = openDirection or "down"
     self.popupWidth = popupWidth or 100
     self.options = options or {}
     self.open = false
     self.selectedIndex = 1
     self.onClick = function() self:toggleOpen() end
+    self.triangleSize = 8
     self.handlers = {
         upButtonUp = function()
             self.selectedIndex = self.selectedIndex - 1
@@ -30,6 +36,7 @@ function Select:init(x, y, options, openDirection, popupWidth)
         AButtonUp = function()
             self.open = false
             print("Selected option: " .. self.options[self.selectedIndex])
+            self.label = self.options[self.selectedIndex]
             pd.inputHandlers.pop()
         end,
         BButtonUp = function()
@@ -40,6 +47,16 @@ end
 
 function Select:draw()
     Select.super.draw(self)
+
+    -- Draw dropdown triangle indicator
+    local triX = self.x + self.width - self.trianglePadding
+    local triY = self.y + (self.height / 2)
+    gfx.setColor(gfx.kColorBlack)
+    gfx.fillTriangle(
+        triX, triY - (self.triangleSize / 2),
+        triX + self.triangleSize, triY - (self.triangleSize / 2),
+        triX + (self.triangleSize / 2), triY + (self.triangleSize / 2)
+    )
 
     if not self.open then return end
 

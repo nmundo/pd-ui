@@ -24,7 +24,7 @@ function Button:init(label, x, y, onClick, style)
     local textw, texth = gfx.getTextSize(label)
     self.label = label
     self.x, self.y = x, y
-    self.width = textw + ((style.padding or 0) * 2)
+    self.width = (style.contentWidth or textw) + ((style.padding or 0) * 2)
     self.height = texth + ((style.padding or 0) * 2)
     self.borderRadius = style.borderRadius
     self.onClick = onClick
