@@ -12,16 +12,20 @@
   - [ ] dialogs
   - [ ] popovers
   - [ ] lists
+  - [ ] loader
 
 - [ ] layout system
 
   - [ ] ??????
 
 - [ ] navigation system
+
   - [x] base navigation system
   - [ ] create context with existing grid
   - [ ] `:removeComponent()`
   - [ ] ???????
+
+- [ ] animations
 
 # Components
 
