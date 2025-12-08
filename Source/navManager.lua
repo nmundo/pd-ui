@@ -1,9 +1,9 @@
 navManager = {}
 
-function navManager.createNavContext()
+function navManager.createNavContext(grid)
     local navContext = {}
     navContext.currentFocusIndex = 1
-    navContext.grid = {} -- 2D array: grid[row][col]
+    navContext.grid = grid or {} -- 2D array: grid[row][col]
     navContext.currentRow = 1
     navContext.currentCol = 1
 
