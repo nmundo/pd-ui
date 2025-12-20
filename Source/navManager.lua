@@ -15,6 +15,10 @@ function navManager.createNavContext(grid)
         table.insert(self.grid[row], component)
     end
 
+    function navContext:removeComponentFromRow(row, col)
+        table.remove(self.grid[row], col)
+    end
+
     function navContext:_setFocus(row, col)
         local prevComponent = self.grid[self.currentRow] and self.grid[self.currentRow][self.currentCol]
         if prevComponent then prevComponent:setSelected(false) end
