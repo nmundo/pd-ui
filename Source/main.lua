@@ -1,5 +1,5 @@
-import "button"
-import "select"
+import "./components/button"
+import "./components/select"
 import "navManager"
 
 local gfx <const> = playdate.graphics
