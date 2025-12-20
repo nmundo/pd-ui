@@ -10,6 +10,7 @@
     - [ ] base component
     - [ ] different drop down styles
   - [ ] dialogs
+    - [x] base component
   - [ ] popovers
   - [ ] lists
   - [ ] loader
