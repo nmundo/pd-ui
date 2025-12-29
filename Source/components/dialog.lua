@@ -10,10 +10,10 @@ local navContext = navManager.createNavContext()
 function Dialog:init(title, message, x, y, width, height, onConfirm, onCancel)
     Dialog.super.init(self)
 
-    self.x = x
-    self.y = y
-    self.width = width
-    self.height = height
+    self.x = 50
+    self.y = 20
+    self.width = 300
+    self.height = 200
     self.title = title
     self.message = message
     self.onConfirm = onConfirm
@@ -42,7 +42,7 @@ function Dialog:init(title, message, x, y, width, height, onConfirm, onCancel)
         self:close()
     end, { padding = 8, borderRadius = 8 })
 
-    self.cancelButton = Button("Cancel", x + width - 140, y + height - 40, function()
+    self.cancelButton = Button("Cancel", x + width - 180, y + height - 40, function()
         if self.onCancel then self.onCancel() end
         self:close()
     end, { padding = 8, borderRadius = 8 })
@@ -72,7 +72,7 @@ function Dialog:draw()
 
     -- message
     gfx.setFont(gfx.font.new('font/Mini Sans'))
-    gfx.drawText(self.message, self.x + 20, self.y + 60)
+    gfx.drawText(self.message, self.x + 20, self.y + 60, self.width - 40, self.height - 100)
 
     -- buttons
 
