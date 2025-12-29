@@ -11,9 +11,9 @@ function Dialog:init(title, message, x, y, width, height, onConfirm, onCancel)
     Dialog.super.init(self)
 
     self.x = 50
-    self.y = 20
+    self.y = 40
     self.width = 300
-    self.height = 200
+    self.height = 160
     self.title = title
     self.message = message
     self.onConfirm = onConfirm
@@ -37,12 +37,12 @@ function Dialog:init(title, message, x, y, width, height, onConfirm, onCancel)
         end
     }
 
-    self.confirmButton = Button("OK", x + width - 70, y + height - 40, function()
+    self.confirmButton = Button("OK", self.x + self.width - 55, self.y + self.height - 45, function()
         if self.onConfirm then self.onConfirm() end
         self:close()
     end, { padding = 8, borderRadius = 8 })
 
-    self.cancelButton = Button("Cancel", x + width - 180, y + height - 40, function()
+    self.cancelButton = Button("Cancel", self.x + self.width - 155, self.y + self.height - 45, function()
         if self.onCancel then self.onCancel() end
         self:close()
     end, { padding = 8, borderRadius = 8 })
@@ -61,6 +61,8 @@ end
 function Dialog:draw()
     if not self.isOpen then return end
     -- background
+    gfx.setColor(gfx.kColorBlack)
+    gfx.fillRoundRect(self.x + 3, self.y + 3, self.width, self.height, 10)
     gfx.setColor(gfx.kColorWhite)
     gfx.fillRoundRect(self.x, self.y, self.width, self.height, 10)
     gfx.setColor(gfx.kColorBlack)
